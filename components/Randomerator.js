@@ -1,7 +1,23 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import Slider from "@react-native-community/slider";
+import { View, Text, StyleSheet} from "react-native";
+import { useState } from "react"
+import { Button } from "./button/index"
 
 export function Randomerator(){
+
+    const [value, setValue] = useState(0)
+
+    function incrementar(){
+        setValue(value + 1)
+    }
+
+    function decrementar(){
+        setValue(value - 1)
+    }
+
+    function resetar(){
+        setValue(0)
+    }
+
     return (
         <View style={styles.container}>
             
@@ -11,31 +27,23 @@ export function Randomerator(){
 
             <View style={styles.content}>
 
-                <Text style={styles.result}>100</Text>
+                <Text style={styles.resultText}>{value}</Text>
 
-                <Slider
-                    style={{height: 30}}
-                    minimumValue={1}
-                    maximumValue={100}
-                    thumbTintColor="#33aaff"
-                    minimumTrackTintColor="#33aaff"
-                    maximumTrackTintColor="#c7dceb"
-                    value={1}
+                <Button
+                    text="Incrementar"
+                    onClick={incrementar}
                 />
 
-                <Slider
-                    style={{height: 30}}
-                    minimumValue={1}
-                    maximumValue={100}
-                    thumbTintColor="#33aaff"
-                    minimumTrackTintColor="#33aaff"
-                    maximumTrackTintColor="#c7dceb"
-                    value={100}
+                <Button
+                    text="Decrementar"
+                    onClick={decrementar}
                 />
 
-                <Pressable style={styles.buttonPrimary}>
-                    <Text style={styles.buttonText}>Generate</Text>
-                </Pressable>
+                <Button
+                    text="Resetar"
+                    onClick={resetar}
+                />
+
             </View>
         </View>
     )
@@ -52,30 +60,19 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: "700",
+        fontWeight: "bold",
         color: "#3f3f3f"
     },
     content:{
         backgroundColor: "#fff",
         width: "100%",  
         padding: 16,
-        borderRadius: 8 
+        borderRadius: 16 
     },
-    result: {
+    resultText: {
         fontSize: 48,
         fontWeight: "bold",
         textAlign: "center",
         color: "#6c6c6c"
-    },
-    buttonPrimary: {
-        backgroundColor: "#0099ff",
-        padding: 16,
-        borderRadius: 8,
-        marginTop: 16
-    },
-    buttonText:{
-        color: "#fff",
-        fontSize: 24,
-        textAlign: "center",
     }
 })
