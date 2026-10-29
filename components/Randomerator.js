@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet} from "react-native";
 import { useState } from "react"
-import { Button } from "./button/index"
+import { Button, BUTTON_DANGER, BUTTON_SECONDARY, BUTTON_SUCCESS } from "./button/index"
 
 export function Randomerator(){
 
@@ -16,6 +16,11 @@ export function Randomerator(){
 
     function resetar(){
         setValue(0)
+    }
+
+    function randomizar(){
+        const randomNumber = Math.floor(Math.random() * 100) + 1
+        setValue(randomNumber)
     }
 
     return (
@@ -35,13 +40,21 @@ export function Randomerator(){
                 />
 
                 <Button
+                    type={BUTTON_SECONDARY}
                     text="Decrementar"
                     onClick={decrementar}
                 />
 
                 <Button
+                    type={BUTTON_DANGER}
                     text="Resetar"
                     onClick={resetar}
+                />
+
+                <Button
+                    type={BUTTON_SUCCESS}
+                    text="Randomizar"
+                    onClick={randomizar}
                 />
 
             </View>
